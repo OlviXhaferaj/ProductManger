@@ -3,7 +3,8 @@ import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button,Form} from 'react-bootstrap'; 
 
-const ProductForm = () => {
+const ProductForm = (props) => {
+    const {product, setProduct} = props;
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
@@ -19,10 +20,12 @@ const ProductForm = () => {
         .then(res=> {
             console.log(res);
             console.log(res.data);
+            setProduct([...product, res.data]);
         })
         .catch(err => {
             console.log(err)
         })
+        
     }
     return (
         <div>
